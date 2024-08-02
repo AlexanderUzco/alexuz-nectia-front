@@ -49,7 +49,11 @@ export const DashboardProvider: FC<{ children: ReactNode }> = ({
         throw new Error(res.data.message);
       }
 
-      setTasks(res.data);
+      if (res.data.length === 0) {
+        return setTasks([]);
+      } else {
+        setTasks(res.data);
+      }
     } catch (error) {
       toast.error('Error fetching tasks');
     }
