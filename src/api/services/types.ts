@@ -45,6 +45,7 @@ export type TUpdateTask = {
   description: string;
   completed: boolean;
   userID: string;
+  id: string;
 };
 
 export type TDeleteTask = {
