@@ -1,0 +1,11 @@
+# Taskuz (React + TypeScript + Vite)
+
+# Configuración del Cliente Frontend
+
+Este proyecto utiliza variables de entorno para la configuración del cliente frontend. Antes de ejecutar la aplicación, **asegúrate de configurar las siguientes variables de entorno en un archivo `.env` en la raíz del proyecto**.
+
+## Variables de Entorno
+
+- `VITE_ALEXUZ_NECTIA_SERVICE_URL`: URL del servicio Taskuz.
+
+¡Listo! Con estas variables de entorno configuradas, estás preparado para ejecutar y trabajar con el cliente frontend de tu aplicación.
