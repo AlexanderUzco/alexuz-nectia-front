@@ -11,6 +11,7 @@ export interface IDasboardModal extends IModalHandler {
 
 export interface IDashboardContext {
   tasks: TTask[];
+  loadingTasks: boolean;
   dashboardModal: IDasboardModal;
   handleDashboardModal: (data: IDasboardModal) => void;
   fetchTasks: () => void;
@@ -19,6 +20,7 @@ export interface IDashboardContext {
 
 const initialDashboardContext: IDashboardContext = {
   tasks: [],
+  loadingTasks: false,
   dashboardModal: {
     open: false,
     type: null,
@@ -37,12 +39,14 @@ export const DashboardProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [tasks, setTasks] = useState<TTask[]>([]);
+  const [loadingTasks, setLoadingTasks] = useState<boolean>(false);
   const [dashboardModal, setDashboardModal] = useState<IDasboardModal>(
     initialDashboardContext.dashboardModal
   );
 
   const fetchTasks = async () => {
     try {
+      setLoadingTasks(true);
       const res = await getTasks();
 
       if (res.data instanceof AxiosError) {
@@ -54,7 +58,9 @@ export const DashboardProvider: FC<{ children: ReactNode }> = ({
       } else {
         setTasks(res.data);
       }
+      setLoadingTasks(false);
     } catch (error) {
+      setLoadingTasks(false);
       toast.error('Error fetching tasks');
     }
   };
@@ -70,6 +76,7 @@ export const DashboardProvider: FC<{ children: ReactNode }> = ({
     <DashboardContext.Provider
       value={{
         tasks,
+        loadingTasks,
         dashboardModal,
         fetchTasks,
         handleDashboardModal,

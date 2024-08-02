@@ -105,7 +105,6 @@ const SignUp = () => {
               <span className='text-red-500'>This field is required</span>
             )}
           </div>
-          {/* Nuevo select para el tipo de registro */}
           <div className='flex items-center justify-center'>
             <button
               type='submit'
