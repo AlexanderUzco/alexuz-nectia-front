@@ -6,6 +6,6 @@ Este proyecto utiliza variables de entorno para la configuración del cliente fr
 
 ## Variables de Entorno
 
-- `VITE_ALEXUZ_NECTIA_SERVICE_URL`: URL del servicio Taskuz.
+- `VITE_ALEXUZ_NECTIA_SERVICE_URL`: URL del servicio Taskuz. (localhost:3000)
 
 ¡Listo! Con estas variables de entorno configuradas, estás preparado para ejecutar y trabajar con el cliente frontend de tu aplicación.
