@@ -25,7 +25,7 @@ export type TUpdatedByAdmin = {
 
 export type TTask = {
   id: string;
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
   completed: boolean;
@@ -44,6 +44,7 @@ export type TUpdateTask = {
   title: string;
   description: string;
   completed: boolean;
+  userID: string;
 };
 
 export type TDeleteTask = {

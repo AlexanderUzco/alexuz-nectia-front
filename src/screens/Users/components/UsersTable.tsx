@@ -1,9 +1,16 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/userContext';
 import Spinner from '@components/Spinner';
+import { AuthContext } from '@contexts/authContext';
 
 const UsersTable = () => {
+  const { user } = useContext(AuthContext);
   const { users, loadingUsers, handleUserModal } = useContext(UserContext);
+
+  console.log({
+    user,
+    users,
+  });
 
   return (
     <>
@@ -54,18 +61,20 @@ const UsersTable = () => {
                     >
                       Edit
                     </button>
-                    <button
-                      onClick={() => {
-                        handleUserModal({
-                          open: true,
-                          type: 'delete',
-                          userSelected: item,
-                        });
-                      }}
-                      className='bg-red-500 text-white px-2 py-1 rounded'
-                    >
-                      Delete
-                    </button>
+                    {user._id !== item._id && (
+                      <button
+                        onClick={() => {
+                          handleUserModal({
+                            open: true,
+                            type: 'delete',
+                            userSelected: item,
+                          });
+                        }}
+                        className='bg-red-500 text-white px-2 py-1 rounded'
+                      >
+                        Delete
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
