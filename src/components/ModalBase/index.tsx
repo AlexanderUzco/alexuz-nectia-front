@@ -25,7 +25,7 @@ const ModalBase: FC<ModalBaseProps> = ({
       onClick={closeModal}
     >
       <div
-        className='bg-white rounded-lg p-6 w-1/3'
+        className='bg-white rounded-lg p-6  sm:w-1/2 md:w-1/3 lg:w-1/4'
         onClick={(e) => e.stopPropagation()}
       >
         <div className='flex justify-between items-center border-b pb-3'>
