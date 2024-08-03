@@ -1,7 +1,15 @@
-import { getTasks } from '@api/services/task';
+import { getTaskUser } from '@api/services/task';
 import { TTask } from '@api/services/types';
+import { AuthContext } from '@contexts/authContext';
 import { AxiosError } from 'axios';
-import { createContext, FC, ReactNode, useEffect, useState } from 'react';
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { toast } from 'react-toastify';
 import { IModalHandler } from 'src/types/common';
 
@@ -44,17 +52,21 @@ export const DashboardProvider: FC<{ children: ReactNode }> = ({
     initialDashboardContext.dashboardModal
   );
 
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
+
   const fetchTasks = async () => {
     try {
       setLoadingTasks(true);
-      const res = await getTasks();
+      const res = await getTaskUser(user._id);
 
       if (res.data instanceof AxiosError) {
         throw new Error(res.data.message);
       }
 
       if (res.data.length === 0) {
-        return setTasks([]);
+        setTasks([]);
       } else {
         setTasks(res.data);
       }
@@ -70,7 +82,8 @@ export const DashboardProvider: FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user._id]);
 
   return (
     <DashboardContext.Provider
