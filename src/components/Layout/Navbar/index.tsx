@@ -37,7 +37,6 @@ const Navbar = () => {
           />
         )}
       </div>
-
       <img
         src={logo}
         alt='Logo'
@@ -46,10 +45,15 @@ const Navbar = () => {
       />
       <div>
         {isAuthenticated ? (
-          <ArrowLeftStartOnRectangleIcon
-            className='hidden md:block h-6 w-6 cursor-pointer hover:text-gray-400 transition duration-200'
-            onClick={handleLogout}
-          />
+          <div className='flex items-center'>
+            <div className='hidden md:block mr-4'>
+              <p className='text-sm truncate'>Hello, {user?.name}</p>
+            </div>
+            <ArrowLeftStartOnRectangleIcon
+              className='hidden md:block h-6 w-6 cursor-pointer hover:text-gray-400 transition duration-200'
+              onClick={handleLogout}
+            />
+          </div>
         ) : (
           <UserCircleIcon
             className='hidden md:block h-6 w-6 cursor-pointer hover:text-gray-400 transition duration-200'
@@ -98,7 +102,6 @@ const Navbar = () => {
                 </MenuItem>
               </>
             )}
-            {/* Create signout button */}
             <MenuItem>
               {isAuthenticated ? (
                 <button

@@ -20,7 +20,7 @@ const DeleteUserModal = () => {
         throw { message: res?.response?.data };
       }
 
-      toast.success('User update to deleted');
+      toast.success('User deleted');
       closeModal();
       fetchUsers();
     } catch (error) {
