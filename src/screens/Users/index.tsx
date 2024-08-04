@@ -3,8 +3,9 @@ import UsersTable from './components/UsersTable';
 import CreateUserModal from './components/CreateUserModal';
 import UserHeader from './components/UserHeader';
 import DeleteUserModal from './components/DeleteUserModal';
+import withAdminProtection from '../../hoc/withAdminProtection';
 
-const Users = () => {
+const UsersScreen = () => {
   return (
     <UserProvider>
       <UserHeader />
@@ -14,5 +15,7 @@ const Users = () => {
     </UserProvider>
   );
 };
+
+const Users = withAdminProtection(UsersScreen);
 
 export default Users;
